@@ -35,14 +35,17 @@ const renderTable = (list) => {
 };
 
 const fetchData = () => {
+    getEle("overlay").style.display = "block";
     listTask
         .callApi("Task", "GET", null)
         .then((result) => {
             renderTable(result.data)
             listTacks = result.data;
+            getEle("overlay").style.display = "none";
         })
         .catch((err) => {
             console.log(err);
+            getEle("overlay").style.display = "none";
         });
 };
 fetchData();
@@ -76,6 +79,8 @@ const themTask = () => {
             })
             .catch((err) => {
                 console.log(err);
+                getEle("overlay").style.display = "none";
+                
             });
     }
     return null;
@@ -97,6 +102,7 @@ const xoaTask = (id) => {
             })
             .catch((err) => {
                 console.log(err);
+                getEle("overlay").style.display = "none";
             });
     }
 };
